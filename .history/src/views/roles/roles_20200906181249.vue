@@ -1,0 +1,91 @@
+<template>
+  <div>
+    <biaoge :roles="roles" :expand-options="true" :index-options="indexOptions" :columns="columns" :loadingOptions="loadingOptions">
+    
+    </biaoge>
+  </div>
+</template>
+<script>
+import { createNamespacedHelpers } from "vuex";
+const userModule = createNamespacedHelpers("jurisdiction");
+const {
+  mapState: jurisdictionStste,
+  mapActions: jurisdictionActions
+} = userModule;
+export default {
+  name: "",
+  //接收父组件传递过来的参数
+  props: {},
+  components: {},
+  // 定义变量
+  data() {
+    return {
+      dialogVisible: false,
+      columns: [
+        {
+          label: "#",
+          align: "center",
+          width: "100"
+        },
+        {
+          label: "职位",
+          prop: "roleName",
+          align: "center",
+          width: "350"
+        },
+        {
+          label: "描述",
+          prop: "roleDesc",
+          align: "center",
+          width: "350"
+        },
+        {
+          label: "操作",
+          align: "center"
+        }
+      ],
+      indexOptions: {
+        showIndex: true,
+        label: "#",
+        align: "center",
+        width: "200",
+        indexMethod(index) {
+          return index * 2;
+        }
+      },
+       loadingOptions: {
+        text: "加载中...",
+        bgColor: "rgba(0, 0, 0, 0.8)"
+      }
+    };
+  },
+  //监听方法  click事件等
+  methods: {
+    ...jurisdictionActions(["getroles"]),
+    // 编辑
+    edit(scope){
+      this.dialogVisible = true
+    },
+    // 删除
+    del(){
+
+    },
+    // 分配权限
+    distribution(){
+
+    },
+  },
+  //调用
+  mounted() {
+    this.getroles();
+  },
+  watch: {},
+  //计算
+  computed: {
+    ...jurisdictionStste(["roles"])
+  }
+};
+</script>
+
+<style scoped lang='scss'>
+</style>
