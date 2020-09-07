@@ -4,10 +4,14 @@ import router from './router'
 import store from './store'
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
-import './globalComponents'
+import echarts from "echarts"
+import dayjs from 'dayjs'
+// import './globalComponents'
 import './bus'
 
 Vue.use(ElementUI);
+dayjs().format();
+Vue.prototype.$echarts = echarts
 Vue.config.productionTip = false
 
 new Vue({
