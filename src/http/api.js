@@ -91,5 +91,9 @@ export default {
   //商品列表
   getgoods({query,pagenum,pagesize}){
     return service.get(`/goods?query=${query}&pagenum=${pagenum}&pagesize=${pagesize}`)
+  },
+  //商品分类数据列表
+  getcategories({type,pagenum,pagesize}){
+    return service.get(`/categories?type=${type}&pagenum=${pagenum}&pagesize=${pagesize}`)
   }
 }

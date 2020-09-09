@@ -42,7 +42,7 @@ export default {
         // 提交mutation
         commit('setMenus', res.data)
         // console.log(res.data, 'menus')
-        console.log(router.options.routes,"路由结构")
+        console.log(router.options.routes,"")
         res.data.map(item => {
           item.children.map(item1 => {
             item1.path = `/${item.path}/${item1.path}`

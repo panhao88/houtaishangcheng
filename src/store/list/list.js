@@ -6,8 +6,9 @@ export default {
     namespaced: true,
     //存储共享的数据
     state: {
-        goods:[],
-        total:0
+        goods:[],   //商品列表
+        total:0,
+        fication:[] //分类列表
     },
     //同步修改state的值
     mutations: {
@@ -16,10 +17,14 @@ export default {
     },
     settotal(state,data){
         state.total = data
+    },
+    setfication(state,data){
+        state.fication = data
     }
     },
     //这个是发请求的
     actions: {
+        // 商品列表
     async getgoods({commit} ,{query,pagenum,pagesize}){
         try{
             let res  = await api.getgoods({query,pagenum,pagesize})
@@ -27,6 +32,21 @@ export default {
             commit("setgoods",res.data.goods)
             commit("settotal",res.data.total)
         }catch(err){}
+    },
+    // 商品分类
+    async getcategories({commit},{type,pagenum,pagesize}){
+        try{
+            let res = await api.getcategories({type,pagenum,pagesize})
+            console.log(res.data.result,"商品分类")
+           if(res.meta.status === 200){
+            res.data.result.map(item => {
+                
+            })
+           }
+           commit("setfication" , res.data.result)
+        }catch(err){
+            console.log(err)
+        }
     }
     },
 }

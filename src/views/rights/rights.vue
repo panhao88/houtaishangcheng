@@ -1,9 +1,9 @@
 <template>
     <biaoge :roles="rights" :columns="columns" :index-options="indexOptions">
       <template v-slot:action="scope">
-          <el-tag v-if="scope.ABC.row.level==='0'">一级</el-tag>
-          <el-tag type="success" v-if="scope.ABC.row.level==='1'">二级</el-tag>
-          <el-tag type="danger" v-if="scope.ABC.row.level==='2'">三级</el-tag>
+          <el-tag v-if="scope.scope.row.level==='0'">一级</el-tag>
+          <el-tag type="success" v-if="scope.scope.row.level==='1'">二级</el-tag>
+          <el-tag type="danger" v-if="scope.scope.row.level==='2'">三级</el-tag>
         </template>
     </biaoge>
 </template>
@@ -40,7 +40,6 @@ export default {
       ],
       indexOptions:{
         showIndex:true,
-        label:"#",
         align:"center",
         width:"200",
         indexMethod(index){

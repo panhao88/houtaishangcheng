@@ -99,7 +99,7 @@ export default {
     handleSizeChange() {},
     handleCurrentChange() {},
      goadddoods(){
-       
+      this.$router.push('/goods/addGoods')
     }
   },
   //调用
