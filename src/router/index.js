@@ -100,6 +100,11 @@ const routes = [
             },
         },
         {
+          path:"/goods/addGoods",
+          name:"goods",
+          component:() => import("../views/addgoods/addgoods.vue")
+        },
+        {
             path: "/goods/params",
             name: "params",
             component: () =>

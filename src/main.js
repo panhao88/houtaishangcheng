@@ -6,7 +6,7 @@ import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 import echarts from "echarts"
 import dayjs from 'dayjs'
-// import './globalComponents'
+import './globalComponents'
 import './bus'
 
 Vue.use(ElementUI);

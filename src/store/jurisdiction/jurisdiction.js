@@ -16,7 +16,18 @@ export default {
         },
         setrights(state,data){
             state.rights = data
-        }
+        },
+        setcommitdelete(state, { roleId, data }) {
+            // console.log(state.roles, "state.roles");
+            // console.log(roleId ,11111);
+            // console.log(data ,22);
+            state.roles.map((item) => {
+                if (item.id === roleId) {
+                    item.children = data;
+                }
+            });
+            // console.log(data ,22);
+        },
     },
     //这个是发请求的
     actions: {
@@ -79,10 +90,37 @@ export default {
         async getrights({commit},{type}){
             try{
                 let res = await api.getrights({type})
-                console.log(res.data,"权限列表")
+                console.log(res,"权限列表")
                 commit("setrights",res.data)
             }catch(err){
                 console.log(err)
+            }
+        },
+        //角色授权
+        async getrolesjkl({dispatch},{roleId,rids}){
+            try{
+                let res = await api.getrolesjkl({
+                    roleId,rids
+                })
+                dispatch("getroles")
+            }catch(err){
+                console.log(err);
+            }
+        },
+        //删除指定权限
+        async getrolesdel ({commit},{roleId,rightId}){
+            try {
+                let res = await api.getrolesdel({ roleId, rightId });
+                if (res.meta.status === 200) {
+                    // console.log(roleId, "roleId");
+                    Message.success(res.meta.msg);
+                    // console.log(res, "删除角色指定权限请求");
+                    commit("setcommitdelete", { roleId: roleId, data: res.data });
+                    console.log(res.data,999)
+                    // console.log(roleId,555)
+                }
+            } catch (err) {
+                console.log(err);
             }
         }
     },

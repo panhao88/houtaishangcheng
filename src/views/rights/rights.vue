@@ -1,7 +1,12 @@
 <template>
-  <div>yuytuytuytu</div>
+    <biaoge :roles="rights" :columns="columns" :index-options="indexOptions">
+      <template v-slot:action="scope">
+          <el-tag v-if="scope.ABC.row.level==='0'">一级</el-tag>
+          <el-tag type="success" v-if="scope.ABC.row.level==='1'">二级</el-tag>
+          <el-tag type="danger" v-if="scope.ABC.row.level==='2'">三级</el-tag>
+        </template>
+    </biaoge>
 </template>
-
 <script>
 import { createNamespacedHelpers } from "vuex";
 const userModule = createNamespacedHelpers("jurisdiction");
@@ -16,7 +21,33 @@ export default {
   components: {},
   // 定义变量
   data() {
-    return {};
+    return {
+      type:"list",
+      columns:[
+        {
+          label:"#",
+          align:"center"
+        },
+        {
+          label:"权限名称",
+          align:"center",
+           prop: "authName",
+        },{
+          label:"权限等级",
+          align:"center",
+          name: "action",
+        },
+      ],
+      indexOptions:{
+        showIndex:true,
+        label:"#",
+        align:"center",
+        width:"200",
+        indexMethod(index){
+          return index++
+        }
+      }
+    };
   },
   //监听方法  click事件等
   methods: {
@@ -24,7 +55,11 @@ export default {
   },
   //调用
   mounted() {
-     this.getrights()
+    
+       this.getrights({
+         type:this.type
+       })
+  
   },
   watch: {},
   //计算
