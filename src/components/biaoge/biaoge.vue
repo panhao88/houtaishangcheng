@@ -10,6 +10,9 @@
       :element-loading-text="loadingOptions.text"
       :element-loading-spinner="loadingOptions.icon"
       :element-loading-background="loadingOptions.bgColor"
+      :currentPage="currentPage"
+      :pageSizes="pageSizes"
+      :pageSize="pageSize"
       v-loading="!roles.length"
     >
       <template v-for="(item,index) in columns">
@@ -53,7 +56,7 @@
         :page-sizes="pageSizes"
         :page-size="pageSize"
         layout="total, sizes, prev, pager, next, jumper"
-        :total="100"
+        :total="total"
       ></el-pagination>
     </div>
   </div>
